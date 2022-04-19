@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydep
+  labels:
+    app: mini-app
+spec:
+  selector:
+    matchLabels:
+      app: miniapp
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0  
+  template:
+    metadata:
+      name: mydep1
+      labels:
+        app: miniapp
+    spec:
+      containers:
+      - name: mycont
+        image: nginx:1.21
+        ports:
+        - containerPort: 80
+

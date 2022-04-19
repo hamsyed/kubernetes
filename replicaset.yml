@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: cards-project2
+  labels:
+    app: cards-cdc
+spec:
+  selector:
+    matchLabels:
+      app: cdc-cards
+      cost: vp173  
+    matchExpressions:
+      - {key: app, operator: In, values: [cdc-cards, vp173, cards]}   
+  replicas: 3    
+  template:
+    metadata:
+      name: cdc
+      labels:
+        app: cdc-cards
+        cost: vp173
+        app1: cards  
+    spec:
+      containers:
+      - name: cards
+        image: nginx
+        ports:
+        - containerPort: 80       
