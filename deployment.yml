@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mydep
+  namespace: dev  
   labels:
-    app: mini-app
+    app: mini-appi
 spec:
   selector:
     matchLabels:
