@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: project-cards
+  labels:
+    app: cdc-cards
+spec:
+  containers:
+  - name: cards-trans
+    image: nginx
+    ports:
+    - containerPort: 80
+    volumeMounts:
+      -  name: configmaptest
+         mountPath: "/tmp/config"  
+
+  volumes:
+  - name: configmaptest
+    configMap:
+      name: mymap
+      items:
+      - key: sample.conf
+        path: sample.conf  
